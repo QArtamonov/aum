@@ -11,7 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #f0f0f0;
+            background: #000;
         }
         #meditation-container {
             width: 60%;
@@ -21,16 +21,27 @@
             justify-content: center;
             align-items: flex-end;
             border: 2px solid #000;
-            background: url('meditation_mind_one-750x563.webp') no-repeat center center;
-            background-size: cover;
+            background: url('aum-ing.jpg') no-repeat center center;
+            background-size: contain;
+            background-color: #000;
         }
         #dot {
-            width: 10px;  /* Уменьшил размер точки */
-            height: 10px; /* Уменьшил размер точки */
+            width: 10px;
+            height: 10px;
             background-color: #ff0000;
             border-radius: 50%;
             position: absolute;
-            bottom: 25%; /* Начальная позиция в 25% высоты контейнера */
+            bottom: 25%;
+            box-shadow: 0 0 10px #ff0000;
+            animation: glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #ff0000;
+            }
+            to {
+                box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+            }
         }
         #start-button {
             position: absolute;
@@ -38,6 +49,7 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            border-radius: 15px;
         }
         @media (max-width: 768px) {
             #meditation-container {
@@ -73,7 +85,7 @@
 <script>
     document.getElementById('start-button').addEventListener('click', function() {
         const dot = document.getElementById('dot');
-        const duration = 1 * 10 * 1000; // 5 минут
+        const duration = 5 * 10 * 1000; // 5 минут
         const startTime = performance.now();
 
         function animateDot(time) {
@@ -81,7 +93,7 @@
             const progress = elapsedTime / duration;
             const containerHeight = document.getElementById('meditation-container').clientHeight;
             const startHeight = 0.25 * containerHeight;
-            const endHeight = 0.85 * containerHeight;
+            const endHeight = 0.75 * containerHeight;
             const dotHeight = dot.clientHeight;
 
             if (progress < 1) {
